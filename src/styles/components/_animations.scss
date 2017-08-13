@@ -1,0 +1,31 @@
+@keyframes city-hover {
+  from {
+    background-color: white;
+    border-bottom: 1px solid $border_bottom-color;
+  }
+  to {
+    background-color: $background-hover-color;
+    border-bottom: 1px solid $border_bottom-color-hover;
+  }
+}
+
+@keyframes city-blur {
+  from {
+    background-color: $background-hover-color;
+    border-bottom: 1px solid $border_bottom-color-hover;
+
+  }
+  to {
+    background-color: white;
+    border-bottom: 1px solid $border_bottom-color;
+  }
+}
+
+@keyframes block-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
