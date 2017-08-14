@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SortablePane, Pane } from 'react-sortable-pane';
 
-import { shopDetails } from './../actions/actionCreators';
+import { removeShop } from './../actions/actionCreators';
+
 import Header from './Header';
 
 class Container extends Component {
@@ -12,6 +13,7 @@ class Container extends Component {
 
     this.createNewShop = this.createNewShop.bind(this);
     this.showDetails = this.showDetails.bind(this);
+    this.onHandleRemoveShop = this.onHandleRemoveShop.bind(this);
   }
 
   createNewShop() {
@@ -19,25 +21,25 @@ class Container extends Component {
   }
 
   showDetails(val) {
-    console.log(val);
-    console.log(this.props.shopList);
-    const shop = this.props.shopList.filter( shop => shop.shopName === val)[0];
-    // this.props.showShopDetails(shop);
+    const shop = this.props.shopList.filter(shop => shop.shopName === val)[0];
     this.context.router.history.push(`/${val}`);
+  }
+  
+  onHandleRemoveShop(shopId) {
+    this.props.handleRemoveShop(shopId);
   }
 
   render() {
-
     return (
       <div>
         <Header />
         <div className='container'>
           <div className='row'>
             <div className='col-sm-12'>
-              <h2>Shops</h2>
+              <h2>Shop List</h2>
               <button
-                type="button"
-                className="btn btn-primary"
+                type='button'
+                className='btn btn-primary'
                 onClick={this.createNewShop}
               >Add Shop</button>
               <hr />
@@ -47,12 +49,19 @@ class Container extends Component {
             {this.props.shopList.map(shop =>
               <div className='col-sm-6 col-md-4' key={shop.shopID}>
                 <div className='panel panel-default'>
-                  <div className='panel-heading'>{shop.shopName}</div>
+                  <div className='panel-heading'>
+                    <strong>{shop.shopName}</strong>
+                    <button type="button" className='btn btn-link btn-xs pull-right' onClick={() => this.onHandleRemoveShop(shop.shopID
+                    )}>Remove</button>
+                  </div>
                   <div className='panel-body'>
                     <p>{shop.shopAddress}</p>
                     <p><strong>{shop.workingHours}</strong></p>
-                    <button type="button" className="btn btn-info" onClick={() => this.showDetails(shop.shopName)}>See Details
-                    </button>
+                    <button
+                      type='button'
+                      className='btn btn-success btn-sm'
+                      onClick={() => this.showDetails(shop.shopName)}
+                    >Check out Details</button>
                   </div>
                 </div>
               </div>)
@@ -75,11 +84,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-// const mapDispatchToProps = dispatch => ({
-//   showShopDetails(val) {
-//     console.log(val);
-//     dispatch(shopDetails(val));
-//   }
-// });
+const mapDispatchToProps = dispatch => ({
+  handleRemoveShop(val) {
+    dispatch(removeShop(val));
+  }
+});
 
-export default connect(mapStateToProps)(Container);
+export default connect(mapStateToProps, mapDispatchToProps)(Container);

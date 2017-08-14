@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch, Match } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-// import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './styles/style.scss';
 
 import store from './store/store';

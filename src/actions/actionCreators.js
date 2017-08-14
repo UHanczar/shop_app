@@ -1,4 +1,4 @@
-import { ADD_INITIAL_SHOP_LIST, ADD_SHOP, SHOW_DATA_FOR_EDITING, EDIT_SHOP, ADD_EDIT_SHOP_ITEM, REMOVE_EDIT_SHOP_ITEM, SHOP_DETAILS, REMOVE_EDITING_SHOP, ADD_ITEM, REMOVE_ITEM, CLEAR_ITEM } from './actions';
+import { ADD_INITIAL_SHOP_LIST, ADD_SHOP, SHOW_DATA_FOR_EDITING, EDIT_SHOP, REMOVE_SHOP, ADD_EDIT_SHOP_ITEM, REMOVE_EDIT_SHOP_ITEM, SHOP_DETAILS, REMOVE_EDITING_SHOP, ADD_ITEM, REMOVE_ITEM, CLEAR_ITEM } from './actions';
 
 export const addInitialShopList = (shopList) => {
   return {
@@ -25,6 +25,13 @@ export const editShop = (shop) => {
   return {
     type: EDIT_SHOP,
     payload: shop
+  };
+};
+
+export const removeShop = (item) => {
+  return {
+    type: REMOVE_SHOP,
+    payload: item
   };
 };
 

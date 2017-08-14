@@ -1,4 +1,4 @@
-import { ADD_INITIAL_SHOP_LIST, ADD_SHOP, SHOW_DATA_FOR_EDITING, EDIT_SHOP, ADD_EDIT_SHOP_ITEM, REMOVE_EDIT_SHOP_ITEM, REMOVE_EDITING_SHOP, SHOP_DETAILS, ADD_ITEM, REMOVE_ITEM, CLEAR_ITEM } from './../actions/actions';
+import { ADD_INITIAL_SHOP_LIST, ADD_SHOP, SHOW_DATA_FOR_EDITING, EDIT_SHOP, REMOVE_SHOP, ADD_EDIT_SHOP_ITEM, REMOVE_EDIT_SHOP_ITEM, REMOVE_EDITING_SHOP, SHOP_DETAILS, ADD_ITEM, REMOVE_ITEM, CLEAR_ITEM } from './../actions/actions';
 
 const initialState = {
   shopList: [],
@@ -12,12 +12,14 @@ export const handleShopList = (state = initialState, action) => {
     case ADD_SHOP:
       return Object.assign({}, state, { shopList: state.shopList.concat(action.payload) });
     case SHOW_DATA_FOR_EDITING:
-      // console.log('aaaaaaa', action.payload);
       return Object.assign({}, state, { shopEditing: action.payload });
     case EDIT_SHOP:
       let newShopList = state.shopList.filter(shop => shop.shopID !== action.payload.shopID);
       newShopList = newShopList.concat(action.payload);
       return Object.assign({}, state, { shopList: newShopList });
+    case REMOVE_SHOP:
+      let updatedShopList = state.shopList.filter(shop => shop.shopID !== action.payload);
+      return Object.assign({}, state, { shopList: updatedShopList });
     case ADD_EDIT_SHOP_ITEM:
       const checkEditItem = state.shopEditing.shopItemsList.filter(item => item.shopItemName === action.payload.shopItemName);
       if (!checkEditItem.length) {
@@ -31,7 +33,6 @@ export const handleShopList = (state = initialState, action) => {
       const list = state.shopEditing;
       const newShopItems = state.shopEditing.shopItemsList.filter(item => item.shopItemName !== action.payload);
       const newEditing = Object.assign({}, list, { shopItemsList: newShopItems });
-      console.log('newShopItems', newShopItems);
       return Object.assign({}, state, { shopEditing: newEditing });
     }
     case REMOVE_EDITING_SHOP:

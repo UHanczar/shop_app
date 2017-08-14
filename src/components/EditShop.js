@@ -19,7 +19,7 @@ class EditShop extends Component {
     this.shopAddress.value = this.props.shopEditing.shopAddress;
     this.shopWorkingHours.value = this.props.shopEditing.workingHours;
   }
-  
+
   handleEditShop() {
     const editedShop = {
       shopID: this.props.shopEditing.shopID,
@@ -37,7 +37,7 @@ class EditShop extends Component {
     this.props.clearShopEditing();
     this.context.router.history.push(`/${editedShop.shopName}`);
   }
-  
+
   handleAddShopItem() {
     const newShopItem = {
       shopItemName: this.shopItemName.value,
@@ -46,12 +46,10 @@ class EditShop extends Component {
 
     this.shopItemName.value = '';
     this.shopItemDescription.value = '';
-    console.log(newShopItem);
     this.props.startAddEditedShopItem(newShopItem);
   }
   
   handleRemoveItem(item) {
-    console.log(item);
     this.props.handleEditShopItems(item);
   }
 
@@ -60,27 +58,21 @@ class EditShop extends Component {
     return (
       <div>
         <Header />
-        
         <div className='container'>
           <div className='row'>
-            <div className='col-sm-12'>
-              <div className='row'>
-                <div className='col-xs-6'>
-                  <h3>Shops</h3>
-                </div>
-                <div className='col-xs-6 text-right'>
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={this.handleEditShop}
-                  >
-                  Save Changes</button>
-                </div>
-              </div>
-              <hr />
+            <div className='col-xs-12'>
+              <h3>Shops</h3>
+            </div>
+            <div className='col-xs-12'>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={this.handleEditShop}
+              >
+              Save Changes</button>
             </div>
           </div>
-
+          <hr />
           <div className='row'>
             <div className='col-sm-12 col-md-6'>
               <form>
@@ -93,13 +85,11 @@ class EditShop extends Component {
                   <input className="form-control" id="shop-address" type='text' placeholder='Enter shop Adress' ref={adress => this.shopAddress = adress} required />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="shop-working-hours">Shop Address</label>
+                  <label htmlFor="shop-working-hours">Shop Working Hours</label>
                   <input className="form-control" id="shop-working-hours" type='text' placeholder='Enter shop working hours' ref={workingHours => this.shopWorkingHours = workingHours} required />
                 </div>
               </form>
                 <hr />
-                
-                
                 <div className='row'>
                   <div className='col-sm-12'>
                     <div className='row'>
@@ -115,7 +105,6 @@ class EditShop extends Component {
                       </div>
                     </div>
                     <hr />
-
                     <form>
                       <div className="form-group">
                         <label htmlFor="item-name">Item Name</label>
@@ -131,52 +120,35 @@ class EditShop extends Component {
           </div>
           <hr />
           <div className='row'>
-              <div className='col-xs-12'>
-                <h4>Shop Items</h4>
-                  <table className="table table-striped table-bordered">
-                    <thead>
-                      <tr>
-                        <td>№</td>
-                        <td>Item Name</td>
-                        <td>Item Description</td>
-                        <td>Edit</td>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {
-                        Array.isArray(this.props.shopEditing.shopItemsList) ?
-                        this.props.shopEditing.shopItemsList.map((item, i) => (
-                          <tr key={item.shopItemName}>
-                            <td className="col-xs-1">{i+=1}</td>
-                            <td className="col-xs-3">{item.shopItemName}</td>
-                            <td className="col-xs-7">{item.shopItemDescription}</td>
-                            <td className="col-xs-2"><button type="button" className="btn btn-danger btn-xs" onClick={() => this.handleRemoveItem(item.shopItemName)}>Remove</button></td>
-                          </tr>))
-                    :
-                        <tr><td className='col-xs-12'>There is no items</td></tr>
-                    }
-                      {/* {this.props.shopEditing.shopItems.map((item, i) => (
-                        <tr key={item.shopItemName}>
-                          <td className="col-xs-1">{i}</td>
-                          <td className="col-xs-3">{item.shopItemName}</td>
-                          <td className="col-xs-7">{item.shopItemDescription}</td>
-                          <td className="col-xs-2"><button type="button" className="btn btn-danger btn-xs" onClick={() => this.handleRemoveItem(item.shopItemName)}>Remove</button></td>
-                        </tr>))} */}
-                    </tbody>
-                  </table>
-                
-              </div>
+            <div className='col-xs-12'>
+              <h4>Shop Items</h4>
+              <table className="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>№</th>
+                    <th>Item Name</th>
+                    <th>Item Description</th>
+                    <th>Edit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    Array.isArray(this.props.shopEditing.shopItemsList) ?
+                    this.props.shopEditing.shopItemsList.map((item, i) => (
+                      <tr key={item.shopItemName}>
+                        <td className="col-xs-1">{i+=1}</td>
+                        <td className="col-xs-3">{item.shopItemName}</td>
+                        <td className="col-xs-7">{item.shopItemDescription}</td>
+                        <td className="col-xs-2"><button type="button" className="btn btn-danger btn-xs" onClick={() => this.handleRemoveItem(item.shopItemName)}>Remove</button></td>
+                      </tr>))
+                :
+                    <tr><td className='col-xs-12'>There is no items</td></tr>
+                }
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-        
-        
-        
-        
-        
-        {/* <input type='text' placeholder='Enter shop Name' ref={name => this.shopName = name} />
-        <input type='text' placeholder='Enter shop Adress' ref={adress => this.shopAddress = adress} />
-        <input type='text' placeholder='Enter shop working hours' ref={workingHours => this.shopWorkingHours = workingHours} />
-        <button type="button" className="btn btn-primary" onClick={this.handleEditShop}>Edit Shop</button> */}
       </div>
     );
   }
@@ -188,18 +160,15 @@ EditShop.contextTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    // shopList: state.handleShopList,
     shopEditing: state.handleShopList.shopEditing
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   startEditShop(val) {
-    console.log(val);
     dispatch(editShop(val));
   },
   startAddEditedShopItem(val) {
-    console.log(val);
     dispatch(addEditShopItem(val));
   },
   handleEditShopItems(val) {

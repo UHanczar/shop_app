@@ -1,0 +1,28 @@
+{
+    shopID: 1502665558229,
+    shopName: 'Gippo',
+    shopAddress: 'Bogdanovicha, 32',
+    workingHours: '9.00 - 23.00',
+    shopItemsList: [
+      {
+        shopItemName: 'Fish',
+        shopItemDescription: 'Tristique adipiscing sociis tempor dignissim platea montes vel et sit mattis tortor phasellus cras adipiscing arcu! Lectus aliquet, nec integer aenean pid! Augue platea ac sagittis est placerat? Eu eros sed duis! '
+      },
+      {
+        shopItemName: 'Chiken',
+        shopItemDescription: 'Tristique adipiscing sociis tempor dignissim platea montes vel et sit mattis tortor phasellus cras adipiscing arcu! Lectus aliquet, nec integer aenean pid! Augue platea ac sagittis est placerat? Eu eros sed duis! '
+      },
+      {
+        shopItemName: 'Bread',
+        shopItemDescription: 'Tristique adipiscing sociis tempor dignissim platea montes vel et sit mattis tortor phasellus cras adipiscing arcu! Lectus aliquet, nec integer aenean pid! Augue platea ac sagittis est placerat? Eu eros sed duis! '
+      },
+      {
+        shopItemName: 'Bananas',
+        shopItemDescription: 'Tristique adipiscing sociis tempor dignissim platea montes vel et sit mattis tortor phasellus cras adipiscing arcu! Lectus aliquet, nec integer aenean pid! Augue platea ac sagittis est placerat? Eu eros sed duis! '
+      },
+      {
+        shopItemName: 'Milk',
+        shopItemDescription: 'Tristique adipiscing sociis tempor dignissim platea montes vel et sit mattis tortor phasellus cras adipiscing arcu! Lectus aliquet, nec integer aenean pid! Augue platea ac sagittis est placerat? Eu eros sed duis! '
+      }
+    ]
+  }
